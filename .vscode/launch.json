@@ -9,8 +9,6 @@
             "args": [
                 "--timeout",
                 "999999"
-                //"-g",
-                //"Scraping"
             ]
         }
     ]

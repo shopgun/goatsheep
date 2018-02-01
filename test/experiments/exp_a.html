@@ -15,9 +15,15 @@
     canvas.setWidth(calculation.width);
     canvas.setHeight(calculation.height);
     canvas.selection = false;
-    canvas.setBackgroundImage(imgSrc, canvas.renderAll.bind(canvas), {
-      opacity: 0.25,
-    });
+    window.fabricCanvas = canvas;
+    if (imgSrc) {
+      fabric.Image.fromURL(imgSrc, function (image) {
+        window.backImage = image;
+        canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas), {
+          opacity: .25,
+        });
+      }, { crossOrigin: 'Anonymous' });
+    }
 
     // Add contours
     for (let contour of calculation.contours) {
@@ -56,7 +62,23 @@
       });
       canvas.add(poly);
     }
+
+    function download() {
+      window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
+        opacity: 1,
+      });
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+      let image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      window.location.href = image;
+      window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
+        opacity: .25,
+      });
+    }
   </script>
+  <div id="createPNGButton">
+    <button onclick="download()">Download</button>
+  </div>
 </body>
 
 </html>

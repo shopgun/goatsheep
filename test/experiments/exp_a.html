@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <title>exp_a</title>
+  <script src="./exp_a.dist.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.js"></script>
+</head>
+
+<body style="font-family: Consolas,monaco,monospace">
+  <h2>exp_2</h2>
+  <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
+  <script>
+    let calculation = new Goatsheep(input);
+    console.info(calculation);
+    let canvas = new fabric.Canvas('canvas');
+    canvas.setWidth(calculation.width);
+    canvas.setHeight(calculation.height);
+    // Add contours
+    for (contour of calculation.contours) {
+      let poly = new fabric.Polygon(contour.points, {
+        strokeWidth: 0,
+        fill: "#000000",
+        opacity: 0.2
+      });
+      canvas.add(poly);
+      console.info(contour.bounds.points);
+      poly = new fabric.Polygon(contour.bounds.points, {
+        stroke: "#000000",
+        strokeWidth: 1,
+        fill:'transparent',
+      });
+      canvas.add(poly);
+      let circle = new fabric.Circle({ radius: 5, fill: 'green', left: contour.centroid.x, top: contour.centroid.y });
+      canvas.add(circle);
+    }
+  </script>
+</body>
+
+</html>

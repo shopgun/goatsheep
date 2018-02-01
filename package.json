@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "experiment": "watchify ./test/experiments/exp_a.js -o ./test/experiments/exp_a.dist.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/shopgun/goatsheep#readme",
   "devDependencies": {
-    "mocha": "^5.0.0"
+    "mocha": "^5.0.0",
+    "watchify": "^3.10.0"
   }
 }

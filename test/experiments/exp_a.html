@@ -10,26 +10,39 @@
   <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
   <script>
     let calculation = new Goatsheep(input);
-    console.info(calculation);
+    console.info('calculation:\n', calculation);
     let canvas = new fabric.Canvas('canvas');
     canvas.setWidth(calculation.width);
     canvas.setHeight(calculation.height);
     canvas.selection = false;
+    canvas.setBackgroundImage(imgSrc, canvas.renderAll.bind(canvas), {
+      opacity: 0.25,
+    });
+
     // Add contours
     for (let contour of calculation.contours) {
       let poly = new fabric.Polygon(contour.points, {
-        strokeWidth: 0,
         fill: "#000000",
-        opacity: 0.2,
-        selectable: false
+        opacity: 0.1,
+        selectable: false,
+        stroke: "#00FF00",
+        strokeWidth: 1
       });
       canvas.add(poly);
-      console.info(contour.bounds.points);
       poly = new fabric.Polygon(contour.bounds.points, {
         stroke: "#000000",
+        strokeWidth: 2,
+        fill: 'transparent',
+        selectable: false,
+        opacity: 0.5
+      });
+      canvas.add(poly);
+      poly = new fabric.Polygon(contour.alpha, {
+        stroke: "#00FF00",
         strokeWidth: 1,
         fill: 'transparent',
-        selectable: false
+        selectable: false,
+        opacity: 1
       });
       canvas.add(poly);
       let circle = new fabric.Circle({ radius: 5, fill: 'green', left: contour.centroid.x, top: contour.centroid.y, selectable: false });

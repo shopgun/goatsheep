@@ -22,11 +22,16 @@
     // Add contours
     for (let contour of calculation.contours) {
       let poly = new fabric.Polygon(contour.points, {
-        fill: "#000000",
-        opacity: 0.1,
-        selectable: false,
+        fill: "#00FF00",
+        opacity: 0.15,
+        selectable: false
+      });
+      canvas.add(poly);
+      poly = new fabric.Polygon(contour.alpha, {
         stroke: "#00FF00",
-        strokeWidth: 1
+        strokeWidth: 2,
+        fill: 'transparent',
+        selectable: false
       });
       canvas.add(poly);
       poly = new fabric.Polygon(contour.bounds.points, {
@@ -35,14 +40,6 @@
         fill: 'transparent',
         selectable: false,
         opacity: 0.5
-      });
-      canvas.add(poly);
-      poly = new fabric.Polygon(contour.alpha, {
-        stroke: "#00FF00",
-        strokeWidth: 1,
-        fill: 'transparent',
-        selectable: false,
-        opacity: 1
       });
       canvas.add(poly);
       let circle = new fabric.Circle({ radius: 5, fill: 'green', left: contour.centroid.x, top: contour.centroid.y, selectable: false });

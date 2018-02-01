@@ -4,7 +4,7 @@ const goatsheep = require('./lib/');
 module.exports = goatsheep;
 },{"./lib/":2}],2:[function(require,module,exports){
 const util = require('util');
-const { sanitizeContours, generateContours } = require('./math');
+const { sanitizeContours, generateContours, calculatePointsFromBounds } = require('./math');
 
 function validateContour(contour) {
     if (!util.isArray(contour)) throw new Error('contour must be an array');
@@ -42,8 +42,12 @@ class Goatsheep {
         let contours = payload.contour ? [payload.contour] : payload.contours;
         sanitizeContours(contours);
         this.contours = generateContours(contours);
-        for (let k of ['width', 'height', 'object_width', 'object_height', 'excluded_areas'])
+        for (let k of ['width', 'height', 'object_width', 'object_height', ''])
             this[k] = payload[k];
+        this.exclude = payload.excluded_areas.map((area) => {
+            area.points = calculatePointsFromBounds(area);
+            return area;
+        });
     }
 }
 
@@ -67,25 +71,35 @@ function sanitizeContours(contours) {
     contours.map(sanitizeContour);
 }
 
+function calculatePointsFromBounds(bounds) {
+    let xMin = bounds.left;
+    let yMin = bounds.top;
+    let xMax = xMin + bounds.width;
+    let yMax = yMin + bounds.height;
+
+    return [{ x: xMin, y: yMin }, { x: xMax, y: yMin }, { x: xMax, y: yMax }, { x: xMin, y: yMax }, { x: xMin, y: yMin }];
+}
+
 function getBounds(contour) {
     let xMin, yMi, xMax, yMax;
-    xs = contour.map(({x}) => x);
-    ys = contour.map(({y}) => y);
+    xs = contour.map(({ x }) => x);
+    ys = contour.map(({ y }) => y);
     xMin = xMax = contour[0].x;
     yMin = yMax = contour[0].y;
     xMin = Math.min(...xs);
     xMax = Math.max(...xs);
     yMin = Math.min(...ys);
     yMax = Math.max(...ys);
-    const points = [{x: xMin, y: yMin}, {x: xMax, y: yMin}, {x: xMax, y: yMax}, {x: xMin, y: yMax}, {x: xMin, y: yMin}];
 
-    return {
+    let bounds = {
         width: xMax - xMin,
         height: yMax - yMin,
         top: yMin,
-        left: xMin,
-        points
+        left: xMin
     }
+    bounds.points = calculatePointsFromBounds(bounds);
+
+    return bounds;
 }
 
 function _getArea(contour) {
@@ -148,6 +162,7 @@ module.exports = {
     generateContour: generateContour,
     generateContours: generateContours,
     getArea: getArea,
+    calculatePointsFromBounds: calculatePointsFromBounds,
     // Expose classes
     Contour: Contour
 };

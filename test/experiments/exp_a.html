@@ -7,7 +7,6 @@
 </head>
 
 <body style="font-family: Consolas,monaco,monospace">
-  <h2>exp_2</h2>
   <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
   <script>
     let calculation = new Goatsheep(input);
@@ -15,23 +14,37 @@
     let canvas = new fabric.Canvas('canvas');
     canvas.setWidth(calculation.width);
     canvas.setHeight(calculation.height);
+    canvas.selection = false;
     // Add contours
-    for (contour of calculation.contours) {
+    for (let contour of calculation.contours) {
       let poly = new fabric.Polygon(contour.points, {
         strokeWidth: 0,
         fill: "#000000",
-        opacity: 0.2
+        opacity: 0.2,
+        selectable: false
       });
       canvas.add(poly);
       console.info(contour.bounds.points);
       poly = new fabric.Polygon(contour.bounds.points, {
         stroke: "#000000",
         strokeWidth: 1,
-        fill:'transparent',
+        fill: 'transparent',
+        selectable: false
       });
       canvas.add(poly);
-      let circle = new fabric.Circle({ radius: 5, fill: 'green', left: contour.centroid.x, top: contour.centroid.y });
+      let circle = new fabric.Circle({ radius: 5, fill: 'green', left: contour.centroid.x, top: contour.centroid.y, selectable: false });
       canvas.add(circle);
+    }
+    // Add restricted areas
+    for (let area of calculation.exclude) {
+      let poly = new fabric.Polygon(area.points, {
+        stroke: "#FF0000",
+        strokeWidth: 1,
+        fill: "#FF0000",
+        opacity: 0.2,
+        selectable: false
+      });
+      canvas.add(poly);
     }
   </script>
 </body>

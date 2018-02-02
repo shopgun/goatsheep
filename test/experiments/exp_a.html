@@ -69,9 +69,9 @@
       window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
         opacity: 1,
       });
-      let canvas = document.getElementById("canvas");
-      let ctx = canvas.getContext("2d");
-      let image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      let canvas = document.getElementById('canvas');
+      let ctx = canvas.getContext('2d');
+      let image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream;');
       window.location.href = image;
       window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
         opacity: .25,

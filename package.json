@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "experiment": "watchify ./test/experiments/exp_a.js -o ./test/experiments/exp_a.dist.js"
+    "experiment": "watchify ./test/experiments/exp_a.js -o ./test/experiments/exp_a.dist.js",
+    "compileExperiment": "browserify ./test/experiments/exp_a.js -o ./test/experiments/exp_a.dist.js"
   },
   "repository": {
     "type": "git",

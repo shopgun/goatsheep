@@ -2,6 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Experiment",
+            "type": "chrome",
+            "request": "launch",
+            //"url": "http://localhost/exp_a.html",
+            "file":"${workspaceFolder}/test/experiments/exp_a.html",
+            "webRoot": "${workspaceFolder}/test/experiments/",
+            "cwd": "${workspaceFolder}",
+            "userDataDir": "${workspaceRoot}/out/chrome",
+            "port": 9223,
+            "preLaunchTask": "compileExperiment",
+            "breakOnLoad": true,
+            "trace": true
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Test",

@@ -7,8 +7,8 @@
     "excluded_areas": [
         {
             "width": 582,
-            "height": 100,
-            "top": 10,
+            "height": 300,
+            "top": 500,
             "left": 10
         }
     ],

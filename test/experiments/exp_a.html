@@ -9,11 +9,13 @@
 <body style="font-family: Consolas,monaco,monospace">
   <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
   <script>
-    let calculation = new Goatsheep(input);
-    console.info('calculation:\n', calculation);
+    let goatship = new Goatsheep(input);
+    let solution = goatship.calculate();
+    console.info('goatship:\n', goatship);
+    console.info('solution:\n', solution);
     let canvas = new fabric.Canvas('canvas');
-    canvas.setWidth(calculation.width);
-    canvas.setHeight(calculation.height);
+    canvas.setWidth(goatship.width);
+    canvas.setHeight(goatship.height);
     canvas.selection = false;
     window.fabricCanvas = canvas;
     if (imgSrc) {
@@ -26,7 +28,7 @@
     }
 
     // Add contours
-    for (let contour of calculation.contours) {
+    for (let contour of goatship.contours) {
       let poly = new fabric.Polygon(contour.points, {
         fill: "#00FF00",
         opacity: 0.15,
@@ -52,7 +54,7 @@
       canvas.add(circle);
     }
     // Add restricted areas
-    for (let area of calculation.exclude) {
+    for (let area of goatship.exclude) {
       let poly = new fabric.Polygon(area.points, {
         stroke: "#FF0000",
         strokeWidth: 1,

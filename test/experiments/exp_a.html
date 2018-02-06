@@ -9,11 +9,26 @@
 <body style="font-family: Consolas,monaco,monospace">
   <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
   <script>
+    let time = +new Date();
     let goatship = new Goatsheep(input);
-    let solution = goatship.calculate();
+    for (let i = 0; i < 500; i++) {
+      goatship.analyze();
+    }
+    let total = (+new Date() - time) / 500;
+    alert(total);
     console.info('goatship:\n', goatship);
-    console.info('solution:\n', solution);
+    console.info('analysis:\n', goatship.analysis);
     let canvas = new fabric.Canvas('canvas');
+    function visualize(points) {
+      let poly = new fabric.Polygon(points, {
+        stroke: "#FF0000",
+        strokeWidth: 1,
+        opacity: 0.3,
+        selectable: false
+      });
+      canvas.add(poly);
+    }
+
     canvas.setWidth(goatship.width);
     canvas.setHeight(goatship.height);
     canvas.selection = false;
@@ -64,6 +79,28 @@
       });
       canvas.add(poly);
     }
+    let colorOrientation = {
+      'NW': '#FF0000',
+      'NE': '#FFFF00',
+      'SE': '#00FFFF',
+      'SW': '#0000FF'
+    };
+    // Display
+    let totalSolutions = goatship.analysis.solutions.length;
+    goatship.analysis.solutions.forEach((solution, i) => {
+      let { cell } = solution;
+      let poly = new fabric.Polygon(cell.points, {
+        stroke: "#FF0000",
+        strokeWidth: 1,
+        fill: colorOrientation[cell.orientation],
+        //fill: '#FF0000',
+        opacity: Math.pow(1 - i / totalSolutions, 1),
+        selectable: false
+      });
+      let text = new fabric.Text(solution.freeArea.toString(), { left: cell.left, top: cell.top, fontSize: 10 });
+      canvas.add(poly);
+      canvas.add(text);
+    });
 
     function download() {
       window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {

@@ -11,11 +11,12 @@
   <script>
     let time = +new Date();
     let goatship = new Goatsheep(input);
-    for (let i = 0; i < 1; i++) {
+    let testIterations = 500;
+    for (let i = 0; i < testIterations; i++) {
       goatship.analyze();
     }
-    let total = (+new Date() - time) / 1;
-    console.log('total: ' + total);
+    let total = (+new Date() - time) / testIterations;
+    console.log('time to analyse: ' + total);
     console.info('goatship:\n', goatship);
     console.info('analysis:\n', goatship.analysis);
     let canvas = new fabric.Canvas('canvas');

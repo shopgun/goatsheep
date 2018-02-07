@@ -27,6 +27,7 @@
     "watchify": "^3.10.0"
   },
   "dependencies": {
+    "@turf/intersect": "^5.1.6",
     "convex-hull": "^1.0.3"
   }
 }

@@ -828,9 +828,9 @@ function validatePayload(payload) {
         throw new Error('payload must have a valid contour or contours field');
     for (let k of ['width', 'height', 'object_width', 'object_height'])
         if (!util.isNumber(payload[k])) throw new Error(`payload must have a valid numeric field ${k}`);
-    if (payload.excluded_areas && !util.isArray(payload.excluded_areas))
-        throw new Error('excluded_areas field must be an array');
-    for (let area of payload.excluded_areas)
+    if (payload.exclude && !util.isArray(payload.exclude))
+        throw new Error('exclude field must be an array');
+    for (let area of payload.exclude)
         for (let k of ['width', 'height', 'top', 'left'])
             if (!util.isNumber(area[k])) throw new Error(`excluded areas must have a valid numeric field ${k}`);
     if (payload.contour) {
@@ -850,7 +850,7 @@ class Goatsheep {
         let contours = payload.contour ? [payload.contour] : payload.contours;
         sanitizeContours(contours);
         this.contours = generateContours(contours);
-        for (let k of ['width', 'height', 'object_width', 'object_height', 'excluded_areas'])
+        for (let k of ['width', 'height', 'object_width', 'object_height', 'exclude'])
             this[k] = payload[k];
     }
 }

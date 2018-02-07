@@ -11,8 +11,10 @@
   <script>
     let time = +new Date();
     let goatship = new Goatsheep(input);
-    goatship.analyze();
-    let total = (+new Date() - time);
+    for (let i = 0; i < 1; i++) {
+      goatship.analyze();
+    }
+    let total = (+new Date() - time) / 1;
     console.log('total: ' + total);
     console.info('goatship:\n', goatship);
     console.info('analysis:\n', goatship.analysis);

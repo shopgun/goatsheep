@@ -11,14 +11,9 @@
   <script>
     let time = +new Date();
     let goatship = new Goatsheep(input);
-    let testIterations = 500;
-    for (let i = 0; i < testIterations; i++) {
-      goatship.analyze();
-    }
-    let total = (+new Date() - time) / testIterations;
     console.log('time to analyse: ' + total);
     console.info('goatship:\n', goatship);
-    console.info('analysis:\n', goatship.analysis);
+    console.info('solutions:\n', goatship.solutions);
     let canvas = new fabric.Canvas('canvas');
     function visualize(points) {
       let poly = new fabric.Polygon(points, {

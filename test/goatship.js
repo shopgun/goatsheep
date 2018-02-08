@@ -17,7 +17,6 @@ describe('Goatsheep', () => {
         it('should not throw for valid input', () => {
             try {
                 let goatship = new Goatsheep(input);
-                let solution = goatship.calculate();
             } catch (e) {
                 console.error(e.stack);
             }

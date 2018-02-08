@@ -11,7 +11,6 @@
   <script>
     let time = +new Date();
     let goatship = new Goatsheep(input);
-    console.log('time to analyse: ' + total);
     console.info('goatship:\n', goatship);
     console.info('solutions:\n', goatship.solutions);
     let canvas = new fabric.Canvas('canvas');
@@ -82,15 +81,17 @@
       'SW': '#0000FF'
     };
     // Display
-    let totalSolutions = goatship.analysis.solutions.length;
-    goatship.analysis.solutions.forEach((solution, i) => {
+    let totalSolutions = goatship.solutions.length;
+    goatship.solutions.forEach(([solution], i) => {
       let { cell } = solution;
+      console.log('solution', solution);
       let poly = new fabric.Polygon(cell.points, {
         stroke: "#FF0000",
         strokeWidth: 1,
         fill: colorOrientation[cell.orientation],
         //fill: '#FF0000',
         opacity: 0.5 * Math.pow(1 - i / totalSolutions, 32),
+        opacity: 0.5,
         selectable: false
       });
       let text = new fabric.Text(solution.freeArea.toString(), { left: cell.left, top: cell.top, fontSize: 10 });

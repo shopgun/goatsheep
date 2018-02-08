@@ -1,5 +1,5 @@
 {
-    "imgSrc": "https://bumblebee-stg.imgix.net/feed-images/9cc05761c0e77baff4009248bfed754d702688604af51592ac904087f89b6d0cf81c07f0d84b8ed705a8cf05de0c37ad7c1b577d2239df82e798d61ab7c9c1f0",
+    "imgSrc": "http://api.republica.dk/image/motive-id/375-8647",
     "width": 442,
     "height": 800,
     "contours": [
@@ -80,12 +80,12 @@
             "height": 50
         },
         {
-            "width": 50,
-            "height": 50
+            "width": 350,
+            "height": 450
         },
         {
             "width": 30,
-            "height": 30
+            "height": 80
         }
     ],
     "exclude": []

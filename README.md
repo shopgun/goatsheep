@@ -6,6 +6,12 @@
 
 _Please see the [example](#example) below and read [solution calculation](#calculation) to get a better understanding of the expected solutions._
 
+## Install
+
+```
+$ npm install goatsheep --save
+```
+
 # Example
 Given some canvas rectangle, the _contour/polygon_ of the _foreground/important_ object and some rectangle object that needs to be placed on the canvas, **Goatsheep** will provide a solution for placing the latter such that it overlaps the foreground object as little as possible.
 

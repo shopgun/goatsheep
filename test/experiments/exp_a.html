@@ -10,9 +10,7 @@
   <canvas id="canvas" style="border: 1px solid rgb(235, 235, 235); transform: scale3d(.5,.5)"></canvas>
   <script>
     let time = +new Date();
-    let goatship = new Goatsheep(input);
-    console.info('goatship:\n', goatship);
-    console.info('solutions:\n', goatship.solutions);
+    let goatsheep = new Goatsheep(input);
     let canvas = new fabric.Canvas('canvas');
     function visualize(points) {
       let poly = new fabric.Polygon(points, {
@@ -24,8 +22,8 @@
       canvas.add(poly);
     }
 
-    canvas.setWidth(goatship.width);
-    canvas.setHeight(goatship.height);
+    canvas.setWidth(goatsheep.width);
+    canvas.setHeight(goatsheep.height);
     canvas.selection = false;
     window.fabricCanvas = canvas;
     if (imgSrc) {
@@ -38,7 +36,7 @@
     }
 
     // Add contours
-    for (let contour of goatship.contours) {
+    for (let contour of goatsheep.contours) {
       let poly = new fabric.Polygon(contour.points, {
         fill: "#00FF00",
         opacity: 0.15,
@@ -64,7 +62,7 @@
       canvas.add(circle);
     }
     // Add restricted areas
-    for (let area of goatship.exclude) {
+    for (let area of goatsheep.exclude) {
       let poly = new fabric.Polygon(area.points, {
         stroke: "#FF0000",
         strokeWidth: 1,
@@ -74,22 +72,15 @@
       });
       canvas.add(poly);
     }
-    let colorOrientation = {
-      'NW': '#FF0000',
-      'NE': '#FFFF00',
-      'SE': '#00FFFF',
-      'SW': '#0000FF'
-    };
     // Display
-    let totalSolutions = goatship.solutions.length;
-    goatship.solutions.forEach(([solution], i) => {
+    let totalSolutions = goatsheep.solutions.length;
+    goatsheep.solutions.forEach(([solution], i) => {
       let { cell } = solution;
       console.log('solution', solution);
       let poly = new fabric.Polygon(cell.points, {
         stroke: "#FF0000",
         strokeWidth: 1,
-        fill: colorOrientation[cell.orientation],
-        //fill: '#FF0000',
+        fill: '#FF0000',
         opacity: 0.5 * Math.pow(1 - i / totalSolutions, 32),
         opacity: 0.5,
         selectable: false

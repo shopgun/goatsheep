@@ -14,12 +14,16 @@ describe('Goatsheep', () => {
     });
 
     describe('Payload', () => {
+        let goatship;
         it('should not throw for valid input', () => {
             try {
-                let goatship = new Goatsheep(input);
+                goatship = new Goatsheep(input);
             } catch (e) {
                 console.error(e.stack);
             }
+        });
+        it('should give proper solution', () => {
+            console.info(goatship);
         });
     });
 });

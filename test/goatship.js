@@ -16,14 +16,8 @@ describe('Goatsheep', () => {
     describe('Payload', () => {
         let goatship;
         it('should not throw for valid input', () => {
-            try {
-                goatship = new Goatsheep(input);
-            } catch (e) {
-                console.error(e.stack);
-            }
+            goatship = new Goatsheep(input);
         });
-        it('should give proper solution', () => {
-            console.info(goatship);
-        });
+        it('should give proper solution');
     });
 });

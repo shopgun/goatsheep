@@ -1,5 +1,5 @@
 # Goatsheep
-[![NPM version](https://img.shields.io/npm/v/goatship.svg?style=flat)](https://npmjs.org/package/goatship)
+[![NPM version](https://img.shields.io/npm/v/goatsheep.svg?style=flat)](https://npmjs.org/package/goatsheep)
 [![Build Status](https://travis-ci.org/shopgun/goatsheep.svg?branch=master)](https://travis-ci.org/shopgun/goatsheep?branch=master)
 
 **Goatsheep** provides placement _Solutions_ of rectangles in a specified container with a foreground object such that they are visually pleasing.

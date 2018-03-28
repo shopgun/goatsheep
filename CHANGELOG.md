@@ -1,3 +1,9 @@
+0.0.11 / 2018-03-28
+===================
+
+  * Added support for GeometryCollection
+  * More tests from RL examples
+
 0.0.10 / 2018-03-14
 ===================
 

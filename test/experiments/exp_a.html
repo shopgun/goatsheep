@@ -31,6 +31,8 @@
         window.backImage = image;
         canvas.setBackgroundImage(image, canvas.renderAll.bind(canvas), {
           opacity: .25,
+          width: input.width,
+          height: input.height
         });
       }, { crossOrigin: 'Anonymous' });
     }
@@ -93,6 +95,8 @@
     function download() {
       window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
         opacity: 1,
+        width: window.input.width,
+        height: window.input.height
       });
       let canvas = document.getElementById('canvas');
       let ctx = canvas.getContext('2d');
@@ -100,6 +104,8 @@
       window.location.href = image;
       window.fabricCanvas.setBackgroundImage(window.backImage, window.fabricCanvas.renderAll.bind(window.fabricCanvas), {
         opacity: .25,
+        width: window.input.width,
+        height: window.input.height
       });
     }
   </script>

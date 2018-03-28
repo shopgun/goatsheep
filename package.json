@@ -1,12 +1,17 @@
 {
   "name": "goatsheep",
-  "version": "0.0.11",
-  "description": "",
+  "version": "0.0.12",
+  "description": "Goatsheep provides placement Solutions of rectangles in a specified container with a foreground object such that they are visually pleasing.",
   "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
+  "keywords": [
+    "packing",
+    "polygon",
+    "contour"
+  ],
   "scripts": {
     "test": "mocha",
     "experiment": "watchify ./test/experiments/exp_a.js -o ./test/experiments/exp_a.dist.js",

@@ -1,3 +1,8 @@
+0.0.13 / 2018-08-03
+===================
+
+  * Switched intersection module from @turf/intersect to polygon-clipping
+
 0.0.11 / 2018-03-28
 ===================
 

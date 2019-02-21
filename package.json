@@ -1,6 +1,6 @@
 {
   "name": "goatsheep",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Goatsheep provides placement Solutions of rectangles in a specified container with a foreground object such that they are visually pleasing.",
   "main": "index.js",
   "directories": {
@@ -29,10 +29,10 @@
   "homepage": "https://github.com/shopgun/goatsheep#readme",
   "devDependencies": {
     "mocha": "^5.2.0",
-    "watchify": "^3.11.0"
+    "watchify": "^3.11.1"
   },
   "dependencies": {
     "convex-hull": "^1.0.3",
-    "polygon-clipping": "0.7.0"
+    "polygon-clipping": "^0.12.3"
   }
 }

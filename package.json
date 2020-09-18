@@ -1,6 +1,6 @@
 {
   "name": "goatsheep",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Goatsheep provides placement Solutions of rectangles in a specified container with a foreground object such that they are visually pleasing.",
   "main": "index.js",
   "directories": {
